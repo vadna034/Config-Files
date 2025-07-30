@@ -840,6 +840,15 @@ require('lazy').setup({
   {
     'ThePrimeagen/vim-be-good',
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { 'echasnovski/mini.icons' },
+    keys = {
+      { '<leader>-', '<CMD>Oil<CR>', mode = 'n', desc = 'Open Oil' },
+      { '<leader>o', '<CMD>Oil --float<CR>', mode = 'n', desc = 'Open Oil in floating mode' },
+    },
+  },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
