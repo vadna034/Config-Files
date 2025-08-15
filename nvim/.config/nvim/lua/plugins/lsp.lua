@@ -100,6 +100,10 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
+
+          if client_supports_method(client, 'textDocument/inlayHint', bufnr) then
+            vim.lsp.inlay_hint.enable(true)
+          end
         end,
       })
 
@@ -156,8 +160,7 @@ return {
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
+        -- ts_ls = {},
         --
 
         lua_ls = {
@@ -207,6 +210,25 @@ return {
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
+    config = function()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      require('typescript-tools').setup {
+        capabilities = capabilities,
+        settings = {
+          tsserver = {
+            suggest = {
+              completeFunctionCalls = true,
+              includeCompletionsForModuleExports = true,
+              includeCompletionsWithInsertText = true,
+            },
+          },
+
+          -- These are nice defaults; tweak later if you like
+          separate_diagnostic_server = true,
+          publish_diagnostic_on = 'insert_leave',
+          -- tsserver_path = '/path/to/tsserver', -- only if you need a custom TS
+        },
+      }
+    end,
   },
 }
