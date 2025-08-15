@@ -57,3 +57,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+--
+vim.keymap.set('n', '<leader>bh', '<cmd>bprev<CR>', { desc = 'Move focus to prev buffer in tabline' })
+vim.keymap.set('n', '<leader>bl', '<cmd>bnext<CR>', { desc = 'Move focus to next buffer in tabline' })
+vim.keymap.set('n', '<leader>bt', '<cmd>tabnew<CR>', { desc = 'Creates a new unnamed buffer in a new tab' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = 'Creates a new unnamed buffer in a new tab' })
+vim.keymap.set('n', '<leader>bsh', '<cmd>split<CR>', { desc = 'Splits the current buffer horizontally' })
+vim.keymap.set('n', '<leader>bsv', '<cmd>vsplit<CR>', { desc = 'Splits the current buffer vertically' })
